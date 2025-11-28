@@ -22,7 +22,7 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 4420.985173528618)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-39.9, -70.1, 89.5)) //17.8 70.1
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-39.9, -70.1, 89.5))
                 .strafeToConstantHeading(new Vector2d(-59,-59))
                 .build());
 
