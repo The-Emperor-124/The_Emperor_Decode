@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Mecanum;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -17,9 +16,14 @@ public class RobotHardware {
     public DcMotor motorIntake = null;
     public IMU imu = null;
 
-    public RobotHardware(LinearOpMode opmode) {
+    public RobotHardware(Mecanum2026 opmode) {
         myOpMode = opmode;
     }
+    public RobotHardware(MecanumDriverOptimized opmode) {
+        myOpMode = opmode;
+    }
+
+
 
     public void init() {
         leftRear = myOpMode.hardwareMap.get(DcMotor.class, "leftRear");
@@ -27,6 +31,12 @@ public class RobotHardware {
         rightRear = myOpMode.hardwareMap.get(DcMotor.class, "rightRear");
         rightFront = myOpMode.hardwareMap.get(DcMotor.class, "rightFront");
         motorIntake = myOpMode.hardwareMap.get(DcMotor.class, "motorIntake");
+
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         // Initialize IMU
         imu = myOpMode.hardwareMap.get(IMU.class, "imu");
         // Adjust the orientation parameters to match your robot
@@ -49,6 +59,7 @@ public class RobotHardware {
         rightFront.setPower((y + x / 0.85 + rx) * power);
 
     }
+
     public void invarteMotorIntake(double powerIntake) {
         motorIntake.setPower(powerIntake);
     }
