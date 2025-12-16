@@ -32,7 +32,7 @@ public class RobotHardware {
         // Adjust the orientation parameters to match your robot
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
                 RevHubOrientationOnRobot.LogoFacingDirection.UP,
-                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD));
+                RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD));
         // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
         imu.initialize(parameters);
 
@@ -40,7 +40,6 @@ public class RobotHardware {
         leftFront.setDirection(DcMotor.Direction.FORWARD);
         rightFront.setDirection(DcMotor.Direction.REVERSE);
         rightRear.setDirection(DcMotor.Direction.FORWARD);
-        motorIntake.setDirection(DcMotorSimple.Direction.FORWARD);
     }
 
     public void driveRobot(double y, double x, double rx, double power) {
@@ -66,7 +65,6 @@ public class RobotHardware {
         leftRear.setPower(((rotY - rotX * 1.1 + rx) / denominator) * power);
         rightFront.setPower(((rotY - rotX * 1.1 - rx) / denominator) * power);
         rightRear.setPower(((rotY + rotX * 1.1 - rx) / denominator) * power);
-        motorIntake.setPower(((rotY + rotX * 1.1 - rx) / denominator) * power);
     }
 
     public void resetYaw() {
