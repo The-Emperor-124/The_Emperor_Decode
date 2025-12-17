@@ -12,7 +12,7 @@ public class Mecanum2026 extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        robot.init();
+        robot.init(hardwareMap);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -31,18 +31,24 @@ public class Mecanum2026 extends LinearOpMode {
             } else {
                 power = 0.7;
             }
+
+
            if(gamepad2.a) {
              powerIntake=1.0;}
            else {powerIntake=0.0;}
-           /* aNow = gamepad1.a;
-           if(aNow && !aLast)
-               intakeOn = !intakeOn;
 
+
+             /* boolean intakeOn = false ;
+            boolean aLast = false ;
+           boolean aNow = gamepad1.a;
+           if(aNow && !aLast) {
+               intakeOn = !intakeOn;
+           }
            aLast = aNow;
            if(intakeOn)
                powerIntake = 1.0;
            else
-               powerIntake = 0.0; */
+               powerIntake = 0.0;  */
 
             // Using the new modular hardware class to drive
             robot.driveMitza(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, power);
@@ -51,6 +57,5 @@ public class Mecanum2026 extends LinearOpMode {
                 telemetry.addData("Status", "Run Time: " + runtime.toString());
                 telemetry.update();
         }
-
         }
     }

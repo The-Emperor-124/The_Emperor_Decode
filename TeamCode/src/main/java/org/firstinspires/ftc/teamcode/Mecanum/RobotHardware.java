@@ -3,9 +3,11 @@ package org.firstinspires.ftc.teamcode.Mecanum;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.Autonom.StateMachine;
 
 public class RobotHardware {
     private LinearOpMode myOpMode = null;
@@ -20,13 +22,15 @@ public class RobotHardware {
     public RobotHardware(Mecanum2026 opmode) {
         myOpMode = opmode;
     }
-    public RobotHardware(MecanumDriverOptimized opmode) {
+  public RobotHardware(MecanumDriverOptimized opmode) {
         myOpMode = opmode;
     }
+  public RobotHardware(StateMachine opmode) {
+      StateMachine bomba  = opmode;
+  }
 
 
-
-    public void init() {
+    public void init(HardwareMap hardwareMap) {
         leftRear = myOpMode.hardwareMap.get(DcMotor.class, "leftRear");
         leftFront = myOpMode.hardwareMap.get(DcMotor.class, "leftFront");
         rightRear = myOpMode.hardwareMap.get(DcMotor.class, "rightRear");
@@ -54,12 +58,12 @@ public class RobotHardware {
         motorIntake.setDirection(DcMotorSimple.Direction.FORWARD);
 
     }
-
+    double strafeCorrection = 0.85;
     public void driveRobot(double y, double x, double rx, double power) {
-        leftRear.setPower((y + x / 0.85 - rx) * power);
-        rightRear.setPower((-y + x / 0.85 - rx) * power);
-        leftFront.setPower((y - x / 0.85 - rx) * power);
-        rightFront.setPower((y + x / 0.85 + rx) * power);
+        leftRear.setPower((y + x / strafeCorrection - rx) * power);
+        rightRear.setPower((-y + x / strafeCorrection - rx) * power);
+        leftFront.setPower((y - x / strafeCorrection - rx) * power);
+        rightFront.setPower((y + x / strafeCorrection + rx) * power);
 
     }
 

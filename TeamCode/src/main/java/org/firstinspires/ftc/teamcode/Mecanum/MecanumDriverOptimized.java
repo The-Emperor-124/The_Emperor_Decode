@@ -12,7 +12,7 @@ public class MecanumDriverOptimized extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        robot.init();
+        robot.init(hardwareMap);
 
         telemetry.addData("Status", "Initialized");
         telemetry.addLine("Press Options/Start to reset field-centric heading");
