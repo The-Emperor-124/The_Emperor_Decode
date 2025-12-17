@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Mecanum;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -50,6 +51,8 @@ public class RobotHardware {
         leftFront.setDirection(DcMotor.Direction.FORWARD);
         rightFront.setDirection(DcMotor.Direction.REVERSE);
         rightRear.setDirection(DcMotor.Direction.FORWARD);
+        motorIntake.setDirection(DcMotorSimple.Direction.FORWARD);
+
     }
 
     public void driveRobot(double y, double x, double rx, double power) {
@@ -60,9 +63,24 @@ public class RobotHardware {
 
     }
 
+        public void driveMitza(double y, double x, double rx, double power) {
+        double theta = Math.atan2(y, x);
+        double r = Math.hypot(x, y);
+
+        theta = AngleUnit.normalizeRadians(theta- imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
+
+        double newForward = r * Math.sin(theta);
+        double newStrafe = r * Math.cos(theta);
+
+            this.driveRobot(newForward, newStrafe, rx, power);
+        }
+
+
     public void invarteMotorIntake(double powerIntake) {
         motorIntake.setPower(powerIntake);
     }
+
+
     public void driveFieldCentric(double y, double x, double rx, double power, double botHeading) {
         double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
         double rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);

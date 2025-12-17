@@ -35,7 +35,7 @@ public class Mecanum2026 extends LinearOpMode {
            else {powerIntake=0.0;}
 
             // Using the new modular hardware class to drive
-            robot.driveFieldCentric(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, power, robot.getHeading());
+            robot.driveMitza(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, power);
             robot.invarteMotorIntake(powerIntake);
 
                 telemetry.addData("Status", "Run Time: " + runtime.toString());

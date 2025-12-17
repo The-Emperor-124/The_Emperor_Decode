@@ -80,7 +80,7 @@ public class MecanumDriverOptimized extends LinearOpMode {
             }
 
             // 4. DRIVE
-            robot.driveFieldCentric(targetY, targetX, correction, power, botHeading);
+            robot.driveRobot(targetY, targetX, correction, power);
 
             telemetry.addData("Run Time", runtime.toString());
             telemetry.addData("Heading", Math.toDegrees(botHeading));
