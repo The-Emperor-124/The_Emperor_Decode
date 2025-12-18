@@ -21,12 +21,14 @@ public class MecanumDriverOptimized extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+
         // Variables for Slew Rate Limiter
         double targetY = 0, targetX = 0, targetRx = 0;
         final double SLEW_RATE = 0.15; // Max change per loop (adjust for feel)
 
         // Variables for PID Heading Lock
         double targetHeading = 0;
+
         final double PID_KP = 1.0; // PID Proportional constant (adjust for tuning)
 
         while (opModeIsActive()) {
