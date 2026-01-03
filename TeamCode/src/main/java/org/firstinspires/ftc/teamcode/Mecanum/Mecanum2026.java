@@ -14,11 +14,11 @@ public class Mecanum2026 extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
     RobotHardware robot = new RobotHardware(this);
-    private Object servoDisc;
+
 
     @Override
     public void runOpMode() {
-        robot.init();
+        robot.init(hardwareMap);
 
 
         telemetry.addData("Status", "Initialized");
@@ -72,7 +72,7 @@ public class Mecanum2026 extends LinearOpMode {
             robot.invarteMotorIntake(powerIntake);
 
             if(gamepad2.dpad_right) {
-                servoDisc.setPosition(0.4) ;
+                robot.servoDisc.setPosition(0.4) ;
             }
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
