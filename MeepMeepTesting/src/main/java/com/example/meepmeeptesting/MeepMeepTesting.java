@@ -26,11 +26,11 @@ public class MeepMeepTesting {
                 .strafeToConstantHeading(new Vector2d(-59,-59))
                 .build());
 
-        Image img=null;
-        try{img= ImageIO.read(new File("C:/Users/daria/Documents/GitHub/Robotica/The_Emperor_Decode/MeepMeepTesting/image.png"));}
-        catch(IOException e){}
+     /*  Image img=null;
+        try{img= ImageIO.read(new File("C:\\Users\\The Emperor RO124\\Downloads\\MeepMeppDecode.png"));}
+        catch(IOException ignored){}*/
 
-        meepMeep.setBackground(img)
+        meepMeep.setBackground(MeepMeep.Background.FIELD_DECODE_JUICE_BLACK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
                 .addEntity(myBot)
