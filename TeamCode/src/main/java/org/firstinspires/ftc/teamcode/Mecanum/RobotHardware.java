@@ -1,25 +1,26 @@
 package org.firstinspires.ftc.teamcode.Mecanum;
 
-import android.graphics.Path;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.hardware.Servo;
+
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.teamcode.LimeLight3A;
 
 public class RobotHardware {
     private LinearOpMode myOpMode = null;
-
 
     public DcMotor leftRear = null;
     public DcMotor leftFront = null;
     public DcMotor rightRear = null;
     public DcMotor rightFront = null;
     public DcMotor motorIntake = null;
+    public Servo servoDisc = null;
+    public Servo servoOut = null;
     public IMU imu = null;
 
     public RobotHardware(Mecanum2026 opmode) {
@@ -31,14 +32,14 @@ public class RobotHardware {
 
 
 
-
-
     public void init() {
         leftRear = myOpMode.hardwareMap.get(DcMotor.class, "leftRear");
         leftFront = myOpMode.hardwareMap.get(DcMotor.class, "leftFront");
         rightRear = myOpMode.hardwareMap.get(DcMotor.class, "rightRear");
         rightFront = myOpMode.hardwareMap.get(DcMotor.class, "rightFront");
         motorIntake = myOpMode.hardwareMap.get(DcMotor.class, "motorIntake");
+        servoDisc = hardwareMap.get(Servo.class, "servoDisc");
+        servoOut = myOpMode.hardwareMap.get(Servo.class, "servoOut");
 
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -49,8 +50,8 @@ public class RobotHardware {
         imu = myOpMode.hardwareMap.get(IMU.class, "imu");
         // Adjust the orientation parameters to match your robot
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.UP,
-                RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD));
+                RevHubOrientationOnRobot.LogoFacingDirection.LEFT,
+                RevHubOrientationOnRobot.UsbFacingDirection.UP));
         // Without this, the REV Hub's orientation is assumed to be logo up / USB forward
         imu.initialize(parameters);
 
@@ -59,18 +60,23 @@ public class RobotHardware {
         rightFront.setDirection(DcMotor.Direction.REVERSE);
         rightRear.setDirection(DcMotor.Direction.FORWARD);
         motorIntake.setDirection(DcMotorSimple.Direction.FORWARD);
+        servoDisc.setPosition(0.67);
+        servoOut.setPosition(-0.8);
 
     }
 
     public void driveRobot(double y, double x, double rx, double power) {
+
         leftRear.setPower((y + x / 0.85 - rx) * power);
         rightRear.setPower((-y + x / 0.85 - rx) * power);
+
         leftFront.setPower((y - x / 0.85 - rx) * power);
+
         rightFront.setPower((y + x / 0.85 + rx) * power);
 
     }
 
-        public void driveMitza(double y, double x, double rx, double power) {
+    public void driveMitza(double y, double x, double rx, double power) {
         double theta = Math.atan2(y, x);
         double r = Math.hypot(x, y);
 
@@ -79,8 +85,8 @@ public class RobotHardware {
         double newForward = r * Math.sin(theta);
         double newStrafe = r * Math.cos(theta);
 
-            this.driveRobot(newForward, newStrafe, rx, power);
-        }
+        this.driveRobot(newForward, newStrafe, rx, power);
+    }
 
 
     public void invarteMotorIntake(double powerIntake) {
