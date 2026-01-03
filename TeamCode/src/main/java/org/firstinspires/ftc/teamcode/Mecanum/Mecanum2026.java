@@ -3,16 +3,23 @@ package org.firstinspires.ftc.teamcode.Mecanum;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.Servo;
+
+
 
 @TeleOp(name="Mecanum2026)", group="Linear Opmode")
 public class Mecanum2026 extends LinearOpMode {
+    private boolean intakePower=false;
+    private boolean lastButtonA_State=false;
 
     private ElapsedTime runtime = new ElapsedTime();
     RobotHardware robot = new RobotHardware(this);
+    private Object servoDisc;
 
     @Override
     public void runOpMode() {
-        robot.init(hardwareMap);
+        robot.init();
+
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -21,6 +28,7 @@ public class Mecanum2026 extends LinearOpMode {
         runtime.reset();
 
         while (opModeIsActive()) {
+            boolean currentButtonA_State= gamepad1.a;
             double power,powerIntake;
             // boolean aNow,aLast = false,intakeOn = false;
             // turbo slow and normal modes
@@ -31,11 +39,20 @@ public class Mecanum2026 extends LinearOpMode {
             } else {
                 power = 0.7;
             }
+            if(gamepad2.a) {
+                powerIntake=1.0;}
+            else {powerIntake=0.0;}
 
+            if(currentButtonA_State && !lastButtonA_State)
+            {
+                intakePower=!intakePower;
+            }
+            if(intakePower)
+            {
+                powerIntake=1.0;
+            } else powerIntake=0.0;
 
-           if(gamepad2.a) {
-             powerIntake=1.0;}
-           else {powerIntake=0.0;}
+            lastButtonA_State=currentButtonA_State;
 
 
              /* boolean intakeOn = false ;
@@ -51,11 +68,19 @@ public class Mecanum2026 extends LinearOpMode {
                powerIntake = 0.0;  */
 
             // Using the new modular hardware class to drive
-            robot.driveMitza(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, power);
+            robot.driveRobot(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, power);
             robot.invarteMotorIntake(powerIntake);
 
-                telemetry.addData("Status", "Run Time: " + runtime.toString());
-                telemetry.update();
+            if(gamepad2.dpad_right) {
+                servoDisc.setPosition (0.4) ;
+            }
+
+            telemetry.addData("Status", "Run Time: " + runtime.toString());
+            telemetry.update();
         }
-        }
+
     }
+}
+    /*if(gamepad2.a) {
+             powerIntake=1.0;}
+           else {powerIntake=0.0;}*/
