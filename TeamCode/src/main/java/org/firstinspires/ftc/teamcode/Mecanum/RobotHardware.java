@@ -21,6 +21,8 @@ public class RobotHardware {
     public DcMotor rightRear = null;
     public DcMotor rightFront = null;
     public DcMotor motorIntake = null;
+    public DcMotor outDr = null;
+    public DcMotor outSt = null;
 
     public Servo servoDisc = null;
     public Servo servoOut = null;
@@ -47,9 +49,12 @@ public class RobotHardware {
         rightFront = myOpMode.hardwareMap.get(DcMotor.class, "rightFront");
 
         motorIntake = myOpMode.hardwareMap.get(DcMotor.class, "motorIntake");
-
+        outDr = myOpMode.hardwareMap.get(DcMotor.class, "outDr");
+        outSt = myOpMode.hardwareMap.get(DcMotor.class, "outSt");
         servoDisc = hardwareMap.get(Servo.class, "servoDisc");
         servoOut = myOpMode.hardwareMap.get(Servo.class, "servoOut");
+
+
 
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE) ;
         leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -69,7 +74,10 @@ public class RobotHardware {
         leftFront.setDirection(DcMotor.Direction.FORWARD);
         rightFront.setDirection(DcMotor.Direction.REVERSE);
         rightRear.setDirection(DcMotor.Direction.FORWARD);
-        
+
+        outSt.setDirection(DcMotorSimple.Direction.FORWARD);
+        outDr.setDirection(DcMotorSimple.Direction.FORWARD);
+
         motorIntake.setDirection(DcMotorSimple.Direction.FORWARD);
 
         servoDisc.setPosition(0.67);
@@ -77,7 +85,11 @@ public class RobotHardware {
 
     }
 
-    
+    public void outake (double powerOtk){
+        outDr.setPower(powerOtk);
+        outSt.setPower(powerOtk);
+    }
+
     double strafeCorrection = 0.85;
 
     public void driveRobot(double y, double x, double rx, double power) {
