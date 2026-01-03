@@ -72,7 +72,7 @@ public class Mecanum2026 extends LinearOpMode {
             robot.invarteMotorIntake(powerIntake);
 
             if(gamepad2.dpad_right) {
-                servoDisc.setPosition (0.4) ;
+                servoDisc.setPosition(0.4) ;
             }
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());

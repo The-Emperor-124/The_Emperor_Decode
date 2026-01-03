@@ -21,19 +21,23 @@ public class RobotHardware {
     public DcMotor rightRear = null;
     public DcMotor rightFront = null;
     public DcMotor motorIntake = null;
+
     public Servo servoDisc = null;
     public Servo servoOut = null;
+
     public IMU imu = null;
 
     public RobotHardware(Mecanum2026 opmode) {
         myOpMode = opmode;
     }
-  public RobotHardware(MecanumDriverOptimized opmode) {
+
+    public RobotHardware(MecanumDriverOptimized opmode) {
         myOpMode = opmode;
     }
-  public RobotHardware(StateMachine opmode) {
-      StateMachine bomba  = opmode;
-  }
+
+    public RobotHardware(StateMachine opmode) {
+        StateMachine bomba  = opmode;
+    }
 
 
     public void init(HardwareMap hardwareMap) {
@@ -41,7 +45,9 @@ public class RobotHardware {
         leftFront = myOpMode.hardwareMap.get(DcMotor.class, "leftFront");
         rightRear = myOpMode.hardwareMap.get(DcMotor.class, "rightRear");
         rightFront = myOpMode.hardwareMap.get(DcMotor.class, "rightFront");
+
         motorIntake = myOpMode.hardwareMap.get(DcMotor.class, "motorIntake");
+
         servoDisc = hardwareMap.get(Servo.class, "servoDisc");
         servoOut = myOpMode.hardwareMap.get(Servo.class, "servoOut");
 
@@ -63,14 +69,17 @@ public class RobotHardware {
         leftFront.setDirection(DcMotor.Direction.FORWARD);
         rightFront.setDirection(DcMotor.Direction.REVERSE);
         rightRear.setDirection(DcMotor.Direction.FORWARD);
+        
         motorIntake.setDirection(DcMotorSimple.Direction.FORWARD);
+
         servoDisc.setPosition(0.67);
-        servoOut.setPosition(-0.8);
+        servoOut.setPosition(0.8);
 
     }
 
     
     double strafeCorrection = 0.85;
+
     public void driveRobot(double y, double x, double rx, double power) {
         leftRear.setPower((y + x / strafeCorrection - rx) * power);
         rightRear.setPower((-y + x / strafeCorrection - rx) * power);
