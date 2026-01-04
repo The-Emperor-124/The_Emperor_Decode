@@ -76,7 +76,7 @@ public class RobotHardware {
         rightRear.setDirection(DcMotor.Direction.FORWARD);
 
         outSt.setDirection(DcMotorSimple.Direction.FORWARD);
-        outDr.setDirection(DcMotorSimple.Direction.FORWARD);
+        outDr.setDirection(DcMotorSimple.Direction.REVERSE);
 
         motorIntake.setDirection(DcMotorSimple.Direction.FORWARD);
 

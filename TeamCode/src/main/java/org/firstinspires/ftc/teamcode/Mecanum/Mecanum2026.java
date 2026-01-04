@@ -18,6 +18,8 @@ public class Mecanum2026 extends LinearOpMode {
     RobotHardware robot = new RobotHardware(this);
 
 
+
+
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
@@ -25,6 +27,7 @@ public class Mecanum2026 extends LinearOpMode {
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
+
 
         waitForStart();
         runtime.reset();
@@ -73,12 +76,13 @@ public class Mecanum2026 extends LinearOpMode {
             if(currentButtonY_State && !lastButtonY_State){
                 outakePower = !outakePower;
                 double servoPos = robot.servoOut.getPosition();
-                if(servoPos == 0.4){
-                    robot.servoOut.setPosition(0);
-                }
-                else{
-                    robot.servoOut.setPosition(0.4);
-                }
+
+            }
+            if(gamepad2.x){
+                robot.servoOut.setPosition(0.8);
+            }
+            if(gamepad2.b){
+                robot.servoOut.setPosition(0.1);
             }
             if(outakePower){
                 powerOutake=1.0;
@@ -100,25 +104,25 @@ public class Mecanum2026 extends LinearOpMode {
             } */
                    //pozziitii intake
             if(gamepad2.dpad_up){
-                robot.servoDisc.setPosition(0.59); //60
+                robot.servoDisc.setPosition(0.43); //0.35
             }
             if(gamepad2.dpad_right){
-                robot.servoDisc.setPosition(1);
+                robot.servoDisc.setPosition(0.52);
             }
 
             if(gamepad2.dpad_left){
-                robot.servoDisc.setPosition(0.40);
+                robot.servoDisc.setPosition(0.595);
             }
 
                     ///// pozitii outake
             if(gamepad2.dpad_down){
-                robot.servoDisc.setPosition(1); //46
+                robot.servoDisc.setPosition(0.545); //0.18
             }
             if(gamepad2.right_bumper){
-                robot.servoDisc.setPosition(0.67);   //87
+                robot.servoDisc.setPosition(0.625);   //28
             }
             if(gamepad2.left_bumper){
-                robot.servoDisc.setPosition(0.12);
+                robot.servoDisc.setPosition(0.79); //12
             }
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
