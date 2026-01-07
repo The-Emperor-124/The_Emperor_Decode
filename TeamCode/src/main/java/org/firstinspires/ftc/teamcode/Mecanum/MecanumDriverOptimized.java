@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name="MecanumDriverOptimized", group="Linear Opmode")
 public class MecanumDriverOptimized extends LinearOpMode {
 
-    RobotHardware robot = new RobotHardware(this);
+    private RobotHardware robot = new RobotHardware();
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
