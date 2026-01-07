@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name="MecanumDriverOptimized", group="Linear Opmode")
 public class MecanumDriverOptimized extends LinearOpMode {
 
-    RobotHardware robot = new RobotHardware(this);
+    RobotHardware robot = new RobotHardware();
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -44,7 +44,7 @@ public class MecanumDriverOptimized extends LinearOpMode {
 
             // Reset Gyro if needed
             if (gamepad1.options || gamepad1.start) {
-                robot.resetYaw();
+                robot.driveSubsystem.resetYaw();
                 targetHeading = 0; // Reset target to new 0
             }
 
@@ -68,7 +68,7 @@ public class MecanumDriverOptimized extends LinearOpMode {
 
 
             // 3. PID HEADING LOCK (Drift Correction)
-            double botHeading = robot.getHeading();
+            double botHeading = robot.driveSubsystem.getHeading();
             double correction = 0;
 
             // If driver is turning, update target to current
@@ -82,7 +82,7 @@ public class MecanumDriverOptimized extends LinearOpMode {
             }
 
             // 4. DRIVE
-            robot.driveRobot(targetY, targetX, correction, power);
+            robot.driveSubsystem.driveRobot(targetY, targetX, correction, power);
 
             telemetry.addData("Run Time", runtime.toString());
             telemetry.addData("Heading", Math.toDegrees(botHeading));

@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Mecanum;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.Subsystems.OuttakeSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.OuttakeSubsystem;
 
 @TeleOp(name="Mecanum2026", group="Linear Opmode")
 public class Mecanum2026 extends LinearOpMode {

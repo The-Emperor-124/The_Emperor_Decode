@@ -8,7 +8,8 @@ import org.firstinspires.ftc.teamcode.Mecanum.RobotHardware;
 @Autonomous
 public class StateMachine extends OpMode {
 
-    RobotHardware robot  = new RobotHardware(this);
+    RobotHardware robot  = new RobotHardware();
+    
     enum state {
         WAIT_FOR_A,
         WAIT_FOR_B,
