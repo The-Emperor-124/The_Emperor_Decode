@@ -1,4 +1,8 @@
-package org.firstinspires.ftc.teamcode.Subsystems;
+package org.firstinspires.ftc.teamcode.subsystems;
+
+
+
+import static java.lang.Thread.sleep;
 
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -14,6 +18,7 @@ public class DriveSubsystem {
     public IMU imu = null;
 
     private double strafeCorrection = 0.85;
+
 
     public void init(HardwareMap hardwareMap) {
         leftRear = hardwareMap.get(DcMotor.class, "leftRear");
@@ -63,7 +68,7 @@ public class DriveSubsystem {
         rightRear.setPower(((rotY + rotX * 1.1 - rx) / denominator) * power);
     }
 
-    public void driveMitza(double y, double x, double rx, double power) {
+   public void driveMitza(double y, double x, double rx, double power) {
         double theta = Math.atan2(y, x);
         double r = Math.hypot(x, y);
 
@@ -72,8 +77,43 @@ public class DriveSubsystem {
         double newForward = r * Math.sin(theta);
         double newStrafe = r * Math.cos(theta);
 
-        this.driveRobot(newForward, newStrafe, rx, power);
+        driveRobot(newForward, newStrafe, rx, power);
     }
+
+    public void moveForward(double power, int time) throws InterruptedException {
+        leftRear.setPower(power);
+        leftFront.setPower(power);
+        rightRear.setPower(power);
+        rightFront.setPower(power);
+
+        sleep(time);
+    }
+
+    public void moveBackward(double power, int time) throws InterruptedException {
+        leftRear.setPower(-power);
+        leftFront.setPower(-power);
+        rightRear.setPower(-power);
+        rightFront.setPower(-power);
+
+       sleep(time);
+    }
+
+    public void moveLeft(double power, int time) throws InterruptedException {
+        /// astea nu sunt gata
+        leftRear.setPower(power);
+        leftFront.setPower(power);
+
+        sleep(time);
+    }
+
+    public void moveRight(double power, int time) throws InterruptedException {
+       /// nici astea nu sunt gata
+        rightRear.setPower(power);
+        rightFront.setPower(power);
+
+        sleep(time);
+    }
+
 
     public void resetYaw() {
         imu.resetYaw();
