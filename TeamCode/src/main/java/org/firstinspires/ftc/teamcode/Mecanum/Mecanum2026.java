@@ -3,15 +3,15 @@ package org.firstinspires.ftc.teamcode.Mecanum;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.Subsystems.OuttakeSubsystem;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+//import org.firstinspires.ftc.teamcode.Subsystems.OuttakeSubsystem;
+//import com.qualcomm.robotcore.hardware.HardwareMap;
 
 @TeleOp(name="Mecanum2026", group="Linear Opmode")
 public class Mecanum2026 extends LinearOpMode {
-    private boolean intakePower = false;
-    private boolean outakePower = false;
-    private boolean lastButtonA_State = false;
-    private boolean lastButtonY_State = false;
+   // private boolean intakePower = false;
+  //  private boolean outakePower = false;
+    //private boolean lastButtonA_State = false;
+    //private boolean lastButtonY_State = false;
 
     private ElapsedTime runtime = new ElapsedTime();
     RobotHardware robot = new RobotHardware();
@@ -29,16 +29,16 @@ public class Mecanum2026 extends LinearOpMode {
         runtime.reset();
 
         while (opModeIsActive()) {
-            boolean currentButtonA_State = gamepad2.a;
-            boolean currentButtonY_State = gamepad2.y;
+          //  boolean currentButtonA_State = gamepad2.a;
+            //boolean currentButtonY_State = gamepad2.y;
 
             double power, powerIntake, powerOutake;
 
 
             // turbo slow and normal modes
-            if (gamepad1.left_trigger > 0.0) {
+            if (gamepad1.left_bumper) {
                 power = 0.2;
-            } else if (gamepad1.right_trigger > 0.0) {
+            } else if (gamepad1.right_bumper) {
                 power = 1.0;
             } else {
                 power = 0.7;
@@ -48,7 +48,7 @@ public class Mecanum2026 extends LinearOpMode {
             robot.driveSubsystem.driveRobot(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, power);
 
             // INTAKE LOGIC
-            if (gamepad2.a) {
+           /* if (gamepad2.a) {
                 powerIntake = 1.0;
             } else {
                 powerIntake = 0.0;
@@ -118,6 +118,8 @@ public class Mecanum2026 extends LinearOpMode {
             if (gamepad2.left_bumper) {
                 robot.outtakeSubsystem.setServoDiscPosition(OuttakeSubsystem.DISC_POS_2); // 0.79
             }
+            */
+
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
