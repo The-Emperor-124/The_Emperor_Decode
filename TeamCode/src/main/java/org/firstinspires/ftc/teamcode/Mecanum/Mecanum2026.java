@@ -3,15 +3,17 @@ package org.firstinspires.ftc.teamcode.Mecanum;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
-//import org.firstinspires.ftc.teamcode.Subsystems.OuttakeSubsystem;
-//import com.qualcomm.robotcore.hardware.HardwareMap;
-
+import org.firstinspires.ftc.teamcode.subsystems.OuttakeSubsystem;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
 @TeleOp(name="Mecanum2026", group="Linear Opmode")
 public class Mecanum2026 extends LinearOpMode {
-   // private boolean intakePower = false;
-  //  private boolean outakePower = false;
-    //private boolean lastButtonA_State = false;
-    //private boolean lastButtonY_State = false;
+    private boolean intakePower = false;
+    private boolean intakePower2 = false;
+    private boolean outakePower = false;
+    private boolean lastButtonA_State = false;
+    private boolean lastButtonb_State = false;
+    private boolean lastButtonY_State = false;
 
     private ElapsedTime runtime = new ElapsedTime();
     RobotHardware robot = new RobotHardware();
@@ -29,10 +31,10 @@ public class Mecanum2026 extends LinearOpMode {
         runtime.reset();
 
         while (opModeIsActive()) {
-          //  boolean currentButtonA_State = gamepad2.a;
-            //boolean currentButtonY_State = gamepad2.y;
-
-            double power, powerIntake, powerOutake;
+            boolean currentButtonA_State = gamepad2.a;
+            boolean currentButtonY_State = gamepad2.y;
+            boolean currentButtonb_State = gamepad2.b;
+            double power, powerIntake, powerOutake, powerIntake2;
 
 
             // turbo slow and normal modes
@@ -48,7 +50,7 @@ public class Mecanum2026 extends LinearOpMode {
             robot.driveSubsystem.driveRobot(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, power);
 
             // INTAKE LOGIC
-           /* if (gamepad2.a) {
+           if (gamepad2.a) {   //intake inauntru
                 powerIntake = 1.0;
             } else {
                 powerIntake = 0.0;
@@ -67,6 +69,26 @@ public class Mecanum2026 extends LinearOpMode {
 
 
 
+            if (gamepad2.b) {   //intake afara
+                powerIntake2 = -1.0;
+            } else {
+                powerIntake2 = 0.0;
+            }
+
+            if (currentButtonb_State && !lastButtonb_State) {
+                intakePower2 = !intakePower2;
+            }
+            if (intakePower2) {
+                powerIntake2 = -1.0;
+            } else powerIntake2 = 0.0;
+
+            lastButtonb_State = currentButtonb_State;
+
+            robot.intakeSubsystem.setPower(powerIntake2);
+
+
+
+
             // OUTTAKE LOGIC
 
             if (gamepad2.y) {
@@ -80,12 +102,12 @@ public class Mecanum2026 extends LinearOpMode {
                 // double servoPos = robot.outtakeSubsystem.getServoOutPosition(); // Nu cred ca l folositi pe asta decomentati daca da
             }
 
-            if (gamepad2.x) {
+          /*  if (gamepad2.x) {
                 robot.outtakeSubsystem.setServoOutPosition(OuttakeSubsystem.SERVO_OUT_CLOSE); // 0.8
             }
             if (gamepad2.b) {
                 robot.outtakeSubsystem.setServoOutPosition(OuttakeSubsystem.SERVO_OUT_OPEN); // 0.1
-            }
+            }*/
             
             if (outakePower) {
                 powerOutake = 1.0;
@@ -97,7 +119,7 @@ public class Mecanum2026 extends LinearOpMode {
 
 
             // positions intake (ServoDisc)
-            if (gamepad2.dpad_up) {
+           /* if (gamepad2.dpad_up) {
                 robot.outtakeSubsystem.setServoDiscPosition(OuttakeSubsystem.DISC_UP); // 0.43
             }
             if (gamepad2.dpad_right) {
@@ -118,8 +140,8 @@ public class Mecanum2026 extends LinearOpMode {
             if (gamepad2.left_bumper) {
                 robot.outtakeSubsystem.setServoDiscPosition(OuttakeSubsystem.DISC_POS_2); // 0.79
             }
-            */
 
+*/
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
