@@ -8,6 +8,8 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.noahbres.meepmeep.MeepMeep;
 import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
 import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
+import com.acmerobotics.roadrunner.SleepAction;
+import com.acmerobotics.roadrunner.SequentialAction;
 
 import java.awt.Image;
 import java.io.File;
@@ -24,9 +26,19 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(90), 4420.985173528618)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(65.9, -7, Math.toRadians(180)))
-                .strafeToConstantHeading(new Vector2d(38.2,-10))
-                .build());
+
+
+
+
+        myBot.runAction(
+            new SequentialAction(
+
+                    new SleepAction(25),
+                myBot.getDrive().actionBuilder(new Pose2d(65.9, -7, Math.toRadians(180)))
+                        .strafeToConstantHeading(new Vector2d(38.2,-10))
+                        .build()
+            )
+        );
 
      /*  Image img=null;
         try{img= ImageIO.read(new File("C:\\Users\\The Emperor RO124\\Downloads\\MeepMeppDecode.png"));}

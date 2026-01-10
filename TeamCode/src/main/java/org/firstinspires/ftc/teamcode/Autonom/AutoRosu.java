@@ -32,6 +32,7 @@ public class AutoRosu extends LinearOpMode {
         Pose2d initialPose = new Pose2d(60, 14, Math.toRadians(180)); // 20 64
         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
 
+        SleepAction sleep =new SleepAction(25000);
 
         AccelConstraint accFast=new ProfileAccelConstraint(-105.0,105.0);
         AccelConstraint accSlow = new ProfileAccelConstraint(-30.0, 30.0);
@@ -70,14 +71,18 @@ public class AutoRosu extends LinearOpMode {
         waitForStart();
 
         if (isStopRequested()) return;
-        Action sleep = new SleepAction(25000).build();
+
         Action actParcare = parcare.build();
 
         // Run Actions
         Actions.runBlocking(
                 new SequentialAction(
-                        actSleep
+
+                new SleepAction(25),
+
                         actParcare
+
+
                 )
         );
     }
