@@ -8,12 +8,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
 @TeleOp(name="Mecanum2026", group="Linear Opmode")
 public class Mecanum2026 extends LinearOpMode {
-    private boolean intakePower = false;
-    private boolean intakePower2 = false;
-    private boolean outakePower = false;
-    private boolean lastButtonA_State = false;
-    private boolean lastButtonb_State = false;
-    private boolean lastButtonY_State = false;
 
     private ElapsedTime runtime = new ElapsedTime();
     RobotHardware robot = new RobotHardware();
@@ -22,18 +16,14 @@ public class Mecanum2026 extends LinearOpMode {
     public void runOpMode() {
         robot.init(hardwareMap);
 
-
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-
 
         waitForStart();
         runtime.reset();
 
         while (opModeIsActive()) {
-            boolean currentButtonA_State = gamepad2.a;
-            boolean currentButtonY_State = gamepad2.y;
-            boolean currentButtonb_State = gamepad2.b;
+
             double power, powerIntake, powerOutake, powerIntake2;
 
 
@@ -55,93 +45,22 @@ public class Mecanum2026 extends LinearOpMode {
             } else {
                 powerIntake = 0.0;
             }
-
-            if (currentButtonA_State && !lastButtonA_State) {
-                intakePower = !intakePower;
-            }
-            if (intakePower) {
-                powerIntake = 1.0;
-            } else powerIntake = 0.0;
-            
-            lastButtonA_State = currentButtonA_State;
-
             robot.intakeSubsystem.setPower(powerIntake);
-
-
 
             if (gamepad2.b) {   //intake afara
                 powerIntake2 = -1.0;
             } else {
                 powerIntake2 = 0.0;
             }
-
-            if (currentButtonb_State && !lastButtonb_State) {
-                intakePower2 = !intakePower2;
-            }
-            if (intakePower2) {
-                powerIntake2 = -1.0;
-            } else powerIntake2 = 0.0;
-
-            lastButtonb_State = currentButtonb_State;
-
-            robot.intakeSubsystem.setPower(powerIntake2);
-
-
-
+               robot.intakeSubsystem.setPower(powerIntake2);
 
             // OUTTAKE LOGIC
-
             if (gamepad2.y) {
                 powerOutake = 1.0;
             } else {
                 powerOutake = 0.0;
             }
-            
-            if (currentButtonY_State && !lastButtonY_State) {
-                outakePower = !outakePower;
-                // double servoPos = robot.outtakeSubsystem.getServoOutPosition(); // Nu cred ca l folositi pe asta decomentati daca da
-            }
-
-          /*  if (gamepad2.x) {
-                robot.outtakeSubsystem.setServoOutPosition(OuttakeSubsystem.SERVO_OUT_CLOSE); // 0.8
-            }
-            if (gamepad2.b) {
-                robot.outtakeSubsystem.setServoOutPosition(OuttakeSubsystem.SERVO_OUT_OPEN); // 0.1
-            }*/
-            
-            if (outakePower) {
-                powerOutake = 1.0;
-            } else {
-                powerOutake = 0.0;
-            }
-            lastButtonY_State = currentButtonY_State;
             robot.outtakeSubsystem.setOutakeMotorsPower(powerOutake);
-
-
-            // positions intake (ServoDisc)
-           /* if (gamepad2.dpad_up) {
-                robot.outtakeSubsystem.setServoDiscPosition(OuttakeSubsystem.DISC_UP); // 0.43
-            }
-            if (gamepad2.dpad_right) {
-                robot.outtakeSubsystem.setServoDiscPosition(OuttakeSubsystem.DISC_RIGHT); // 0.52
-            }
-
-            if (gamepad2.dpad_left) {
-                robot.outtakeSubsystem.setServoDiscPosition(OuttakeSubsystem.DISC_LEFT); // 0.595
-            }
-
-            ///// positions outtake
-            if (gamepad2.dpad_down) {
-                robot.outtakeSubsystem.setServoDiscPosition(OuttakeSubsystem.DISC_DOWN); // 0.545
-            }
-            if (gamepad2.right_bumper) {
-                robot.outtakeSubsystem.setServoDiscPosition(OuttakeSubsystem.DISC_POS_1);   // 0.625
-            }
-            if (gamepad2.left_bumper) {
-                robot.outtakeSubsystem.setServoDiscPosition(OuttakeSubsystem.DISC_POS_2); // 0.79
-            }
-
-*/
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
