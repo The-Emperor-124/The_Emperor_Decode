@@ -31,6 +31,7 @@ public final class ThreeDeadWheelLocalizer implements Localizer {
 
     public final Encoder par0, par1, perp;
 
+
     public final double inPerTick;
 
     private int lastPar0Pos, lastPar1Pos, lastPerpPos;
@@ -47,6 +48,10 @@ public final class ThreeDeadWheelLocalizer implements Localizer {
 
         // TODO: reverse encoder directions if needed
           //perp.setDirection(DcMotorSimple.Direction.REVERSE);
+        par1.setDirection(DcMotorSimple.Direction.REVERSE); //par1-stanga si par0-dreapta
+        par0.setDirection(DcMotorSimple.Direction.FORWARD);
+        perp.setDirection(DcMotorSimple.Direction.FORWARD);
+
 
         this.inPerTick = inPerTick;
 
