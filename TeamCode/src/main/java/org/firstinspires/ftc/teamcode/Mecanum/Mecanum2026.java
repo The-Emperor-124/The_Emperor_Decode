@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.subsystems.OuttakeSubsystem;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
+
 @TeleOp(name="Mecanum2026", group="Linear Opmode")
 public class Mecanum2026 extends LinearOpMode {
 
@@ -24,7 +25,7 @@ public class Mecanum2026 extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            double power, powerIntake, powerOutake, powerIntake2;
+            double power, powerIntake1, powerIntake2, powerIntake3;
 
 
             // turbo slow and normal modes
@@ -39,28 +40,61 @@ public class Mecanum2026 extends LinearOpMode {
             // DRIVE LOGIC
             robot.driveSubsystem.driveRobot(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, power);
 
+
+
             // INTAKE LOGIC
-           if (gamepad2.a) {   //intake inauntru
-                powerIntake = 1.0;
-            } else {
-                powerIntake = 0.0;
+            if(gamepad2.a){       //intake in
+                robot.intakeSubsystem.motorIntake1.setPower(0.8);
             }
-            robot.intakeSubsystem.setPower(powerIntake);
+            else {
+                robot.intakeSubsystem.motorIntake1.setPower(0.0);
+            }
+            if(gamepad2.dpad_down){       //intake1 out
+                robot.intakeSubsystem.motorIntake1.setPower(-0.8);
+            }
+            else {
+                robot.intakeSubsystem.motorIntake1.setPower(0.0);
+            }
 
-            if (gamepad2.b) {   //intake afara
-                powerIntake2 = -1.0;
-            } else {
-                powerIntake2 = 0.0;
-            }
-               robot.intakeSubsystem.setPower(powerIntake2);
 
-            // OUTTAKE LOGIC
-            if (gamepad2.y) {
-                powerOutake = 1.0;
-            } else {
-                powerOutake = 0.0;
+
+            if(gamepad2.x){ //intake2 in
+                robot.intakeSubsystem.motorIntake2.setPower(1.0 );
             }
-            robot.outtakeSubsystem.setOutakeMotorsPower(powerOutake);
+            else {
+                robot.intakeSubsystem.motorIntake2.setPower(0.0);
+            }
+            if(gamepad2.dpad_left){   //intake2 out
+                robot.intakeSubsystem.motorIntake2.setPower(-0.8);
+            }
+            else {
+                robot.intakeSubsystem.motorIntake2.setPower(0.0);
+            }
+
+
+
+            if(gamepad2.y){    //intake3 in
+                robot.intakeSubsystem.motorIntake3.setPower(1.0);
+            }
+            else{
+                robot.intakeSubsystem.motorIntake3.setPower(0.0);
+            }
+            if(gamepad2.dpad_up){ //intake3 out
+                robot.intakeSubsystem.motorIntake3.setPower(-0.8);
+            }
+            else{
+                robot.intakeSubsystem.motorIntake3.setPower(0.0);
+            }
+
+            if(gamepad2.b){
+                robot.outtakeSubsystem.motorOutake.setPower(1.0);
+            }
+            else {
+                robot.outtakeSubsystem.motorOutake.setPower(0.0);
+            }
+
+
+
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();

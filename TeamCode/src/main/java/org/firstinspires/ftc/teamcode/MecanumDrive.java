@@ -58,21 +58,21 @@ public final class MecanumDrive {
         // TODO: fill in these values based on
         //   see https://ftc-docs.firstinspires.org/en/latest/programming_resources/imu/imu.html?highlight=imu#physical-hub-mounting
         public RevHubOrientationOnRobot.LogoFacingDirection logoFacingDirection =
-                RevHubOrientationOnRobot.LogoFacingDirection.FORWARD;
+                RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD;
         public RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
                 RevHubOrientationOnRobot.UsbFacingDirection.RIGHT;
 
         // drive model parameters
-        public double inPerTick =-0.003411448; //-43099.0 valoare 2026, posibil sa trebuie sa schimbe directiile encoderelor ca la EncoderDebugger sa scada cand robotul merge in fata pt ca la
+        public double inPerTick =0.00261252925488; //-43099.0 valoare 2026, posibil sa trebuie sa schimbe directiile encoderelor ca la EncoderDebugger sa scada cand robotul merge in fata pt ca la
         //fw push test sa fie cu plus
         // ;//0.19459459; //fw push test
-            public double lateralInPerTick =  -215.36439348805933;
-        public double trackWidthTicks = -4105.163869211856;
+            public double lateralInPerTick =0.0017086486382206128;
+        public double trackWidthTicks = 4260.945354764631;
 
         // feedforward parameters (in tick units)
-        public double kS = 0.9206596791719002;//1.4134745961402269;
-        public double kV =-0.0004258989192272428;// 0.00036650653019187825;
-        public double kA = 0.0000000000000000000003 ;
+        public double kS = 1.7351563996415704;//1.4134745961402269;
+        public double kV =0.00037328539138234174;// 0.00036650653019187825;
+        public double kA = 0.00055 ;
 
         // path profile parameters (in inches)
         public double maxWheelVel = 100;
@@ -244,7 +244,7 @@ public final class MecanumDrive {
         // TODO: make sure your config has an IMU with this name (can be BNO or BHI)
         //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
         lazyImu = new LazyHardwareMapImu(hardwareMap, "imu", new RevHubOrientationOnRobot(
-                PARAMS.logoFacingDirection.LEFT, PARAMS.usbFacingDirection.FORWARD));
+            PARAMS.logoFacingDirection.BACKWARD, PARAMS.usbFacingDirection.RIGHT));
 
         voltageSensor = hardwareMap.voltageSensor.iterator().next();
 

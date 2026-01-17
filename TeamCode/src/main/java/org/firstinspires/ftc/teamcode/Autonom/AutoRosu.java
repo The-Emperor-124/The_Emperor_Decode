@@ -17,8 +17,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
-//import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
-//import org.firstinspires.ftc.teamcode.Subsystems.OuttakeSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.OuttakeSubsystem;
 
 import java.util.Arrays;
 
@@ -56,17 +56,18 @@ public class AutoRosu extends LinearOpMode {
 
 
         // Initializam subsistemele folosite
-        //IntakeSubsystem intake = new IntakeSubsystem();
-       // OuttakeSubsystem outtake = new OuttakeSubsystem();
+        IntakeSubsystem intake = new IntakeSubsystem();
+        OuttakeSubsystem outtake = new OuttakeSubsystem();
 
-      //  intake.init(hardwareMap);
-        //outtake.init(hardwareMap);
+         intake.init(hardwareMap);
+         outtake.init(hardwareMap);
 
         // aici ne definim traseele pe care le vom urma
         // un traseu = de ex de la locul de start la locul de pornit outake pt prima lansare
         // astea sunt doar ex random nu le luati ca atare e doar sa invatati voi
         TrajectoryActionBuilder parcare = drive.actionBuilder(initialPose)
                 .strafeToConstantHeading(new Vector2d(32, 15.2), speedSlow, accSlow);
+
         // Wait for Start
         waitForStart();
 
