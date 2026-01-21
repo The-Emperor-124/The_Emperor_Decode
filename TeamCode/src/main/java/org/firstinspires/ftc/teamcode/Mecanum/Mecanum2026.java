@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.subsystems.OuttakeSubsystem;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.subsystems.IntakeSubsystem;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name="Mecanum2026", group="Linear Opmode")
 public class Mecanum2026 extends LinearOpMode {
@@ -13,15 +14,21 @@ public class Mecanum2026 extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     RobotHardware robot = new RobotHardware();
 
+     Servo servoOut;
     @Override
     public void runOpMode() {
+        servoOut=hardwareMap.servo.get("servoOut");
+        servoOut.setPosition(0.65);
         robot.init(hardwareMap);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
+
+
         waitForStart();
         runtime.reset();
+
 
         while (opModeIsActive()) {
 
@@ -79,6 +86,8 @@ public class Mecanum2026 extends LinearOpMode {
             else{
                 robot.intakeSubsystem.motorIntake3.setPower(0.0);
             }
+
+
             if(gamepad2.dpad_up){ //intake3 out
                 robot.intakeSubsystem.motorIntake3.setPower(-0.8);
             }
@@ -86,7 +95,18 @@ public class Mecanum2026 extends LinearOpMode {
                 robot.intakeSubsystem.motorIntake3.setPower(0.0);
             }
 
-            if(gamepad2.b){
+
+
+           if(gamepad2.dpad_right){
+               servoOut.setPosition(0.7);
+           }
+           if(gamepad2.left_bumper){
+               servoOut.setPosition(0.9);
+           }
+
+
+
+            if(gamepad2.b){  //outake
                 robot.outtakeSubsystem.motorOutake.setPower(1.0);
             }
             else {
