@@ -1,9 +1,12 @@
-package org.firstinspires.ftc.teamcode.Subsystems;
+package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.acmerobotics.roadrunner.Action;
+import androidx.annotation.NonNull;
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 
 public class OuttakeSubsystem {
     public DcMotor outDr = null;
@@ -54,5 +57,36 @@ public class OuttakeSubsystem {
     
     public double getServoOutPosition() {
         return servoOut.getPosition();
+    }
+
+    // Actions for RoadRunner
+    public Action setLiftPowerAction(double power) {
+        return new Action() {
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                setOutakeMotorsPower(power);
+                return false;
+            }
+        };
+    }
+
+    public Action setServoOutAction(double position) {
+        return new Action() {
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                setServoOutPosition(position);
+                return false;
+            }
+        };
+    }
+
+    public Action setServoDiscAction(double position) {
+        return new Action() {
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                setServoDiscPosition(position);
+                return false;
+            }
+        };
     }
 }

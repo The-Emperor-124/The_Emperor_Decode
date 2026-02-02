@@ -36,9 +36,9 @@ public class Mecanum2026 extends LinearOpMode {
 
 
             // turbo slow and normal modes
-            if (gamepad1.left_trigger > 0.0) {
+            if (gamepad1.left_bumper) {
                 power = 0.2;
-            } else if (gamepad1.right_trigger > 0.0) {
+            } else if (gamepad1.right_bumper) {
                 power = 1.0;
             } else {
                 power = 0.7;
