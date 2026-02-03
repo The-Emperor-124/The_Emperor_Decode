@@ -66,7 +66,7 @@ public class AutoRosu extends LinearOpMode {
         // un traseu = de ex de la locul de start la locul de pornit outake pt prima lansare
         // astea sunt doar ex random nu le luati ca atare e doar sa invatati voi
         TrajectoryActionBuilder parcare = drive.actionBuilder(initialPose)
-                .strafeToConstantHeading(new Vector2d(32, 15.2), speedSlow, accSlow);
+                .strafeToConstantHeading(new Vector2d(46.6, 13.2), speedSlow, accSlow);
 
         // Wait for Start
         waitForStart();

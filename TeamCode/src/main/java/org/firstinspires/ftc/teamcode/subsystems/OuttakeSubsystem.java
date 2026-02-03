@@ -15,6 +15,8 @@ public class OuttakeSubsystem {
 
         motorOutake1.setDirection(DcMotorSimple.Direction.REVERSE );
         motorOutake2.setDirection(DcMotorSimple.Direction.FORWARD );
+
+        
          }
 
           public void setOutakeMotorsPower(double power) {

@@ -34,7 +34,7 @@ public class MeepMeepTesting {
 
                     new SleepAction(25),
                 myBot.getDrive().actionBuilder(new Pose2d(65.9, 11, Math.toRadians(180)))
-                        .strafeToConstantHeading(new Vector2d(60,-62))
+                        .strafeToConstantHeading(new Vector2d(46.7,13.2))
                         .build()
             )
         );

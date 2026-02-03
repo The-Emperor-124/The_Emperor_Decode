@@ -17,8 +17,7 @@ public class Mecanum2026 extends LinearOpMode {
      Servo servoOut;
     @Override
     public void runOpMode() {
-        servoOut=hardwareMap.servo.get("servoOut");
-        servoOut.setPosition(0.65);
+
         robot.init(hardwareMap);
 
         telemetry.addData("Status", "Initialized");
@@ -145,8 +144,14 @@ public class Mecanum2026 extends LinearOpMode {
                 robot.outtakeSubsystem.motorOutake2.setPower(0.0);
             }
 
-            if(gamepad2.b){
+            if(gamepad2.b && gamepad2.right_bumper){
+                robot.outtakeSubsystem.motorOutake1.setPower(1.0);
+                robot.outtakeSubsystem.motorOutake2.setPower(1.0);
 
+            }
+            else {
+                robot.outtakeSubsystem.motorOutake1.setPower(0.0);
+                robot.outtakeSubsystem.motorOutake2.setPower(0.0);
             }
 
 
