@@ -20,6 +20,6 @@ public RobotHardware(){
     public void init(HardwareMap hardwareMap) {
         driveSubsystem.init(hardwareMap);
         intakeSubsystem.init(hardwareMap);
-        outtakeSubsystem.init(hardwareMap);
+         outtakeSubsystem.init(hardwareMap);
     }
 }

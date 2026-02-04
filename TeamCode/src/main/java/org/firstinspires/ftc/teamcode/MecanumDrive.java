@@ -58,9 +58,9 @@ public final class MecanumDrive {
         // TODO: fill in these values based on
         //   see https://ftc-docs.firstinspires.org/en/latest/programming_resources/imu/imu.html?highlight=imu#physical-hub-mounting
         public RevHubOrientationOnRobot.LogoFacingDirection logoFacingDirection =
-                RevHubOrientationOnRobot.LogoFacingDirection.BACKWARD;
+                RevHubOrientationOnRobot.LogoFacingDirection.UP;
         public RevHubOrientationOnRobot.UsbFacingDirection usbFacingDirection =
-                RevHubOrientationOnRobot.UsbFacingDirection.RIGHT;
+                RevHubOrientationOnRobot.UsbFacingDirection.LEFT;
 
         // drive model parameters
         public double inPerTick =0.00261252925488; //-43099.0 valoare 2026, posibil sa trebuie sa schimbe directiile encoderelor ca la EncoderDebugger sa scada cand robotul merge in fata pt ca la
@@ -244,7 +244,7 @@ public final class MecanumDrive {
         // TODO: make sure your config has an IMU with this name (can be BNO or BHI)
         //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
         lazyImu = new LazyHardwareMapImu(hardwareMap, "imu", new RevHubOrientationOnRobot(
-            PARAMS.logoFacingDirection.BACKWARD, PARAMS.usbFacingDirection.RIGHT));
+            PARAMS.logoFacingDirection.UP, PARAMS.usbFacingDirection.LEFT));
 
         voltageSensor = hardwareMap.voltageSensor.iterator().next();
 
