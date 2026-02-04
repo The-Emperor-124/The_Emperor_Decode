@@ -1,0 +1,111 @@
+> Task :FtcRobotController:clean
+> Task :MeepMeepTesting:clean UP-TO-DATE
+> Task :TeamCode:clean
+> Task :FtcRobotController:preBuild UP-TO-DATE
+> Task :FtcRobotController:preDebugBuild UP-TO-DATE
+> Task :FtcRobotController:mergeDebugJniLibFolders
+> Task :FtcRobotController:mergeDebugNativeLibs NO-SOURCE
+> Task :FtcRobotController:stripDebugDebugSymbols NO-SOURCE
+> Task :FtcRobotController:copyDebugJniLibsProjectAndLocalJars
+> Task :FtcRobotController:generateDebugBuildConfig
+> Task :FtcRobotController:generateDebugResValues
+> Task :FtcRobotController:generateDebugResources
+> Task :FtcRobotController:packageDebugResources
+> Task :FtcRobotController:extractDeepLinksForAarDebug UP-TO-DATE
+> Task :FtcRobotController:javaPreCompileDebug
+> Task :FtcRobotController:mergeDebugShaders
+> Task :FtcRobotController:compileDebugShaders NO-SOURCE
+> Task :FtcRobotController:generateDebugAssets UP-TO-DATE
+> Task :FtcRobotController:parseDebugLocalResources
+> Task :FtcRobotController:packageDebugAssets
+> Task :FtcRobotController:prepareDebugArtProfile UP-TO-DATE
+> Task :FtcRobotController:prepareLintJarForPublish UP-TO-DATE
+> Task :FtcRobotController:processDebugJavaRes NO-SOURCE
+> Task :TeamCode:preBuild UP-TO-DATE
+> Task :TeamCode:preDebugBuild UP-TO-DATE
+> Task :TeamCode:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :TeamCode:javaPreCompileDebug
+> Task :FtcRobotController:writeDebugAarMetadata
+> Task :FtcRobotController:mergeDebugJavaResource
+> Task :FtcRobotController:processDebugManifest
+> Task :FtcRobotController:compileDebugLibraryResources
+> Task :TeamCode:generateDebugResValues
+> Task :TeamCode:checkDebugAarMetadata
+> Task :TeamCode:mapDebugSourceSetPaths
+> Task :TeamCode:generateDebugResources
+> Task :FtcRobotController:generateDebugRFile
+> Task :FtcRobotController:extractDebugAnnotations
+> Task :TeamCode:mergeDebugResources
+
+> Task :FtcRobotController:compileDebugJavaWithJavac
+Java compiler version 23 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+Note: C:\Users\daria\Documents\GitHub\Robotica\The_Emperor_Decode\FtcRobotController\src\main\java\org\firstinspires\ftc\robotcontroller\internal\FtcRobotControllerActivity.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+3 warnings
+
+> Task :FtcRobotController:mergeDebugGeneratedProguardFiles UP-TO-DATE
+> Task :FtcRobotController:mergeDebugConsumerProguardFiles UP-TO-DATE
+> Task :FtcRobotController:syncDebugLibJars
+> Task :FtcRobotController:bundleDebugAar
+> Task :FtcRobotController:assembleDebug
+> Task :TeamCode:createDebugCompatibleScreenManifests
+> Task :FtcRobotController:extractDeepLinksDebug
+> Task :TeamCode:extractDeepLinksDebug
+> Task :TeamCode:processDebugMainManifest
+> Task :FtcRobotController:bundleLibCompileToJarDebug
+> Task :TeamCode:processDebugManifest
+> Task :TeamCode:mergeDebugShaders
+> Task :TeamCode:compileDebugShaders NO-SOURCE
+> Task :TeamCode:generateDebugAssets UP-TO-DATE
+> Task :TeamCode:mergeDebugAssets
+> Task :TeamCode:processDebugJavaRes NO-SOURCE
+> Task :TeamCode:desugarDebugFileDependencies
+> Task :TeamCode:processDebugManifestForPackage
+> Task :TeamCode:checkDebugDuplicateClasses
+> Task :FtcRobotController:copyDebugJniLibsProjectOnly
+> Task :TeamCode:mergeDebugJniLibFolders
+> Task :TeamCode:validateSigningDebug
+> Task :TeamCode:writeDebugAppMetadata
+> Task :TeamCode:writeDebugSigningConfigVersions
+> Task :FtcRobotController:bundleLibRuntimeToDirDebug
+> Task :TeamCode:mergeDebugNativeLibs
+
+> Task :TeamCode:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: libEasyOpenCV.so, libRobotCore.so, libapriltag.so, libc++_shared.so, libopencv_java4.so, libturbojpeg.so.
+
+> Task :TeamCode:compressDebugAssets
+> Task :TeamCode:processDebugResources
+
+> Task :TeamCode:compileDebugJavaWithJavac
+Java compiler version 23 has deprecated support for compiling with source/target version 8.
+Try one of the following options:
+    1. [Recommended] Use Java toolchain with a lower language version
+    2. Set a higher source/target version
+    3. Use a lower version of the JDK running the build (if you're not using Java toolchain)
+For more details on how to configure these settings, see https://developer.android.com/build/jdks.
+To suppress this warning, set android.javaCompile.suppressSourceTargetDeprecationWarning=true in gradle.properties.
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+3 warnings
+
+> Task :TeamCode:mergeLibDexDebug
+> Task :TeamCode:dexBuilderDebug
+> Task :TeamCode:mergeProjectDexDebug
+> Task :TeamCode:mergeDebugJavaResource
+> Task :TeamCode:mergeExtDexDebug
+> Task :TeamCode:packageDebug
+> Task :TeamCode:createDebugApkListingFileRedirect
+> Task :TeamCode:assembleDebug
+
+BUILD SUCCESSFUL in 11s
+62 actionable tasks: 56 executed, 6 up-to-date
