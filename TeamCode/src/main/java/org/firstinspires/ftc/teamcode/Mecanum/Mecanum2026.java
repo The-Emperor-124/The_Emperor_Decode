@@ -129,29 +129,24 @@ public class Mecanum2026 extends LinearOpMode {
             else{
                 robot.intakeSubsystem.motorIntake1.setPower(0.0);
                 robot.intakeSubsystem.motorIntake2.setPower(0.0);
-                robot.outtakeSubsystem.motorOutake1.setPower(0.0);
-                robot.outtakeSubsystem.motorOutake2.setPower(0.0);
+                robot.outtakeSubsystem.stop();
             }
 
 
 
             if(gamepad2.b){  //outake
-                robot.outtakeSubsystem.motorOutake1.setPower(0.85);
-                robot.outtakeSubsystem.motorOutake2.setPower(0.85);
+                robot.outtakeSubsystem.setOuttakeRPM(5100);
             }
             else {
-                robot.outtakeSubsystem.motorOutake1.setPower(0.0);
-                robot.outtakeSubsystem.motorOutake2.setPower(0.0);
+                robot.outtakeSubsystem.stop();
             }
 
             if(gamepad2.b && gamepad2.right_bumper){
-                robot.outtakeSubsystem.motorOutake1.setPower(1.0);
-                robot.outtakeSubsystem.motorOutake2.setPower(1.0);
+                robot.outtakeSubsystem.fullSpeed();
 
             }
             else {
-                robot.outtakeSubsystem.motorOutake1.setPower(0.0);
-                robot.outtakeSubsystem.motorOutake2.setPower(0.0);
+                robot.outtakeSubsystem.stop();
             }
 
 
